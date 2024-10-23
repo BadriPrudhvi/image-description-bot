@@ -77,7 +77,17 @@
     --chart-5: 340 75% 55%;
   }
 }
+.insights-markdown {
+  line-height: 1.6;
+}
 
+.insights-markdown > *:first-child {
+  margin-top: 0;
+}
+
+.insights-markdown > *:last-child {
+  margin-bottom: 0;
+}
 @layer base {
   * {
     @apply border-border;
