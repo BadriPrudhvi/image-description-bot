@@ -9,14 +9,13 @@ export async function POST(request: NextRequest) {
     
     const formData = await request.formData()
     const imageFile = formData.get('image') as File
-    const language = formData.get('language') as string
-    const length = formData.get('length') as string
+    const question = formData.get('question') as string
 
     const imageInput = Array.from(new Uint8Array(await imageFile.arrayBuffer()))
 
-    const systemPrompt = `You are an expert image insights generator. Your task is to generate concise and impactful insights about an image. It is very important for my career that you follow the instructions exactly.`
+    const systemPrompt = `You are a helpful assistant. Your task is to answer questions about the provided image accurately and concisely. It is very important for my career that you follow these instructions exactly.`
 
-    const userPrompt = `Generate interesting insights about the provided image in ${language} language. Make sure the insights are ${length} and clear. `
+    const userPrompt = `${question}`
 
     const messages = [
         { role: "system", content: systemPrompt },
@@ -29,7 +28,7 @@ export async function POST(request: NextRequest) {
                 messages, 
                 image: imageInput,
                 temperature: 0.0, 
-                max_tokens: 512, 
+                max_tokens: 1024, 
             }, 
             {
                 gateway: {
