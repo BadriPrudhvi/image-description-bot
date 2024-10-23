@@ -26,9 +26,9 @@ export async function POST(request: NextRequest) {
         const response = await ai.run("@cf/meta/llama-3.2-11b-vision-instruct",
             { 
                 messages, 
-                image: imageInput,
                 temperature: 0.0, 
                 max_tokens: 1024, 
+                image: imageInput,
             }, 
             {
                 gateway: {
